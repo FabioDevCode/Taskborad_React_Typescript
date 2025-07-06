@@ -1,10 +1,12 @@
+import Board from './features/board/Board';
+
 const App = () => {
-  return (
-    <div>
-      <h1>TaskBoard</h1>
-      <p>Bienvenue sur ton premier projet React + TypeScript 🎯</p>
-    </div>
-  );
+	return (
+		<div>
+			<h1 style={{ textAlign: 'center' }}>TaskBoard 🗂️</h1>
+			<Board />
+		</div>
+	);
 };
 
 export default App;
