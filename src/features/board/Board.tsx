@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import type { Column as ColumnType } from '../../types/types';
 import Column from './Column';
 
@@ -23,10 +25,25 @@ const Board = () => {
         },
     ];
 
+    const addTask = (columnId: string, title: string) => {
+        const newTask: Task = {
+            id: uuidv4(),
+            title,
+        };
+
+        setColumns(prev =>
+            prev.map(col =>
+                col.id === columnId
+                ? { ...col, tasks: [...col.tasks, newTask] }
+                : col
+            )
+        );
+    };
+
     return (
         <div style={{ display: 'flex', gap: '1rem', padding: '1rem' }}>
-            {boardData.map(column => (
-                <Column key={column.id} column={column} />
+            {columns.map(column => (
+                <Column key={column.id} column={column} onAddTask={addTask} />
             ))}
         </div>
     );
